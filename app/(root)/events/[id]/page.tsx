@@ -6,7 +6,13 @@ import { formatDateTime } from '@/lib/utils';
 import { SearchParamProps } from '@/types'
 import Image from 'next/image';
 
-const EventDetails = async ({  params}: SearchParamProps) => {
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
+const EventDetails = async ({  params}: PageProps) => {
   const {id} = await params;
   const event = await getEventById(id);
 
