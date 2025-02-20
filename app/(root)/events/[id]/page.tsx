@@ -13,7 +13,7 @@ interface PageProps {
 }
 
 const EventDetails = async ({  params}: PageProps) => {
-  const {id} = await params;
+  const {id} = params;
   const event = await getEventById(id);
 
   const relatedEvents = await getRelatedEventsByCategory({
