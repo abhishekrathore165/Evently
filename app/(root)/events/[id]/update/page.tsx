@@ -4,9 +4,13 @@ import { SearchParamProps, UpdateEventParams } from '@/types';
 import { auth } from '@clerk/nextjs/server';
 import React from 'react'
 
+type UpdateEventProps = {
+    params: Promise< {
+      id: string
+    }>
+  }
 
-
-const UpdateEvent = async({params}:SearchParamProps) => {
+const UpdateEvent = async({params}:UpdateEventProps) => {
     const {id} = await params;
     const authObject = await auth();
  const { sessionClaims } = authObject;

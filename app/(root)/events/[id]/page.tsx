@@ -8,14 +8,15 @@ import Image from 'next/image';
 
 
 
-const EventDetails = async ({params}:SearchParamProps) => {
+const EventDetails = async ({params,searchParams}:SearchParamProps) => {
    const {id} = await params;
+   const {page} = await searchParams
   const event = await getEventById(id);
 
   const relatedEvents = await getRelatedEventsByCategory({
     categoryId: event.category._id,
     eventId: event._id,
-    page:1,
+    page:page as string,
   })
 
   return (
@@ -94,7 +95,8 @@ const EventDetails = async ({params}:SearchParamProps) => {
           emptyStateSubtext="Come back later"
           collectionType="All_Events"
           limit={3}
-          page={1}
+          page={page as string}
+          totalPages={relatedEvents?.totalPages}
         />
     </section>
     </>
